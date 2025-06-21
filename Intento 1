@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Proyecto Universitario | JMR </title>
+    <meta name="description" content="Una descripción breve y atractiva de tu página para los buscadores como Google.">
+    
+    <meta name="author" content="Tu Nombre o Nombre de tu Empresa">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+    </head>
+<body>
+
+    <header>
+        <h1>Mi Increíble Página Web</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="acerca.html">Acerca de</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Bienvenido a mi Sitio</h2>
+            <p>Este es el contenido principal de mi página de inicio. Con el tiempo, aquí podrás agregar artículos, galerías de imágenes, productos y mucho más.</p>
+            <img src="images/imagen_destacada.jpg" alt="Descripción de la imagen para accesibilidad y SEO">
+        </section>
+        
+        <section>
+            <h2>Otra Sección</h2>
+            <p>Puedes dividir tu contenido en tantas secciones como necesites para mantenerlo organizado.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tu Nombre o Empresa. Todos los derechos reservados.</p>
+        <p>
+            <a href="/politica-privacidad.html">Política de Privacidad</a> | 
+            <a href="/terminos-uso.html">Términos de Uso</a>
+        </p>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
