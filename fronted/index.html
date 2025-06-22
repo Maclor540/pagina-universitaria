@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.M.R.</title>
+    <style>
+        /* Estilos CSS básicos */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4c59af;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 1em 0;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .button:hover {
+            background-color: #005f7a;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bienvenido a Mi Página J.M.R.</h1>
+        <p>Tu destino para cosas increíbles</p>
+    </header>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#cursos">cursos</a>
+        <a href="#pendientes">pendientes</a>
+        <a href="#acerca">Acerca de</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="container" id="inicio">
+        <h2>Sección de Inicio</h2>
+        <p>Esta es la sección de inicio de tu página. Puedes poner aquí una introducción, noticias recientes o lo que sea más relevante para tus visitantes.</p>
+        <button class="button" onclick="showMessage()">¡Haz Clic Aquí!</button>
+    </div>
+
+    <div class="container" id="acerca">
+        <h2>Acerca de Nosotros</h2>
+        <p>Aquí puedes contar la historia de tu empresa, tu misión, tus valores y todo lo que quieras que la gente sepa sobre ti.</p>
+        <p>Somos un equipo apasionado dedicado a ofrecer las mejores soluciones.</p>
+    </div>
+
+    <div class="container" id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <ul>
+            <li>Desarrollo Web</li>
+            <li>Diseño Gráfico</li>
+            <li>Consultoría SEO</li>
+            <li>Marketing Digital</li>
+        </ul>
+        <p>Explora la gama completa de nuestros servicios y cómo podemos ayudarte.</p>
+    </div>
+
+    <div class="container" id="contacto">
+        <h2>Contacto</h2>
+        <p>¿Tienes alguna pregunta? ¡No dudes en contactarnos!</p>
+        <form action="#" method="POST">
+            <p>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </p>
+            <p>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </p>
+            <p>
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="5" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </p>
+            <button type="submit" class="button">Enviar Mensaje</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mi Página Fantástica. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Script JavaScript simple
+        function showMessage() {
+            alert('¡Hola! Has hecho clic en el botón. ¡Bien hecho!');
+        }
+    </script>
+
+</body>
+</html>
