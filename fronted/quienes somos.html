@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quienes somos - J.M.R.</title>
+    <style>
+        /* Estilos CSS básicos (copiados y adaptados de index.html) */
+        body {
+            font-family: 'Arial', sans-serif; /* Usamos Arial para coherencia con index.html */
+            margin: 0;
+            padding: 0;
+            background-image: url(https://i.pinimg.com/736x/b3/fb/24/b3fb24b01bb8369921da7516d9a11774.jpg); /* Tu imagen de fondo de Pinterest */
+            background-size: cover; /* Cubre todo el área sin repetir */
+            background-attachment: fixed; /* Hace que el fondo se quede fijo al hacer scroll */
+            background-position: center center; /* Centra la imagen de fondo */
+            background-color: #f4f4f4; /* Color de respaldo si la imagen no carga */
+            color: #303030; /* Color de texto ajustado para mejor contraste con fondo claro */
+            line-height: 1.6; /* Mejora la legibilidad del texto */
+            overflow-x: hidden; /* Evita el scroll horizontal causado por animaciones o elementos que sobresalen */
+        }
+        header {
+            /* Estilos del encabezado copiados de index.html */
+            background: linear-gradient(to right, #6a79e4, #87CEFA, #DA70D6); /* Degradado de colores vibrantes */
+            color: white;
+            padding: 2.5em 0 4em; /* Más padding inferior para las capas de ondas */
+            text-align: center;
+            position: relative; /* Necesario para posicionar elementos */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave y compleja */
+            overflow: hidden; /* Asegura que las ondas no desborden */
+            
+            /* Bordes inferiores redondeados, combinando con las ondas */
+            border-bottom-left-radius: 100px; 
+            border-bottom-right-radius: 100px;
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
+        }
+        header:hover {
+            transform: translateY(-5px); /* Más levantamiento al pasar el mouse */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35); /* Sombra más fuerte al flotar */
+        }
+        header h1 {
+            margin-bottom: 0.2em;
+            font-size: 3em; /* Título aún más grande */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Sombra de texto más pronunciada */
+            animation: slideInFromTop 1s ease-out forwards; /* Nueva animación de entrada */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+        header p {
+            margin-top: 0;
+            font-size: 1.3em; /* Párrafo más grande */
+            animation: fadeIn 1.5s ease-out 0.5s forwards; /* Animación de entrada con retardo */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+
+        /* Ondas del encabezado (copiadas de index.html) */
+        header::before,
+        header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Altura de las ondas */
+            background: rgba(255, 255, 255, 0.15); /* Color base de las ondas, translúcido */
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Forma de onda curvada en la parte superior */
+            transform-origin: bottom center;
+            z-index: 1; /* Para que estén por debajo del texto, pero sobre el fondo */
+        }
+
+        header::before {
+            bottom: -30px; /* Posición de la primera onda */
+            background: rgba(255, 255, 255, 0.1); /* Ligeramente más transparente */
+            transform: skewY(-4deg) scaleX(1.5); /* Más inclinado y ancho */
+            animation: waveEffect 5s infinite alternate ease-in-out; /* Animación de la primera onda */
+        }
+
+        header::after {
+            bottom: -50px; /* Posición de la segunda onda, más abajo */
+            background: rgba(255, 255, 255, 0.2); /* Menos transparente que la primera */
+            transform: skewY(2deg) scaleX(1.2); /* Inclinación opuesta y menos ancho */
+            animation: waveEffectReverse 6s infinite alternate ease-in-out 0.5s; /* Animación de la segunda onda con retardo */
+        }
+
+        nav { 
+            /* Estilos de navegación (copiados y adaptados de index.html) */
+            background: transparent; /* Fondo transparente */
+            box-shadow: none; /* Elimina la sombra de la barra de navegación */
+            overflow: hidden;
+            position: sticky; 
+            top: 0;
+            z-index: 100; 
+            animation: fadeIn 1s ease-out 1s forwards; 
+            opacity: 0;
+            
+            /* Bordes superiores rectos para la nav */
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
+            /* Ajuste de margen y padding para barra recta debajo del encabezado curvado */
+            margin-top: 0; 
+            padding-top: 18px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+
+            /* Centrar los elementos de navegación con flexbox */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        }
+        
+        nav a { 
+            display: block; 
+            color: white; 
+            text-align: center; 
+            padding: 18px 25px; 
+            text-decoration: none; 
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Sombra de texto para legibilidad sobre el fondo transparente */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-bottom 0.3s ease; 
+            font-weight: bold; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra sutil para los elementos individuales */
+            border-radius: 8px; 
+            margin: 5px 10px; /* Margen entre los elementos para mejor espaciado */
+        }
+        nav a:hover { 
+            background-color: rgba(0, 140, 186, 0.7); /* Color secundario con transparencia al pasar el mouse */
+            transform: translateY(-3px) scale(1.05); 
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); 
+        }
+        nav a::after { 
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+        }
+        nav a:hover::after {
+            transform: translateX(0);
+        }
+
+        /* Estilos de contenedor (copiados de index.html) */
+        .container { 
+            padding: 35px; 
+            max-width: 950px; /* Ancho máximo un poco más grande */
+            margin: 50px auto; 
+            background-color: white;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); 
+            border-radius: 15px; 
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            border: 1px solid #d0d0d0; 
+            animation: popIn 0.8s ease-out forwards; 
+            opacity: 0; 
+            position: relative; 
+            text-align: left; /* Alineación del texto por defecto */
+        }
+        .container:hover {
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35); 
+        }
+        /* Retraso para la animación de los contenedores */
+        #quienes-somos.container { animation-delay: 0.2s; } 
+
+        /* Estilos para h2 dentro de los contenedores (copiados de index.html) */
+        .container h2 {
+            font-size: 2.2em; /* Título más grande */
+            color: #4c59af; /* Color principal */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: slideInFromLeft 0.8s ease-out forwards; /* Animación de entrada desde la izquierda */
+            opacity: 0;
+            margin-bottom: 25px; /* Más espacio */
+            border-bottom: 2px solid #008CBA; /* Línea debajo del título */
+            padding-bottom: 10px;
+        }
+
+        /* Estilos para el mensaje personalizado */
+        .message-box {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50; /* Color de éxito */
+            color: white;
+            padding: 20px 35px; /* Más padding */
+            border-radius: 10px; /* Bordes más redondeados */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Sombra más pronunciada */
+            z-index: 1000;
+            text-align: center;
+            font-size: 1.3em; /* Texto más grande */
+            animation: fadeInScale 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; /* Animación de entrada más suave */
+            opacity: 0; /* Oculto inicialmente */
+        }
+        .message-box.error {
+            background-color: #f44336; /* Color de error */
+        }
+        
+        /* Keyframe Animations (copiadas de index.html) */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes waveEffect {
+            0% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+            50% { transform: skewY(0deg) scaleX(1.6) translateY(-5px); }
+            100% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+        }
+        @keyframes waveEffectReverse {
+            0% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+            50% { transform: skewY(-2deg) scaleX(1.3) translateY(5px); }
+            100% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+        }
+        @keyframes expandWidth {
+            from { width: 0; opacity: 0; }
+            to { width: 80%; opacity: 1; }
+        }
+
+        /* Media query para hacer la página responsive (adaptado de index.html) */
+        @media (max-width: 768px) {
+            header {
+                padding: 2em 0 4em; 
+                border-bottom-left-radius: 50px; 
+                border-bottom-right-radius: 50px; 
+            }
+            header h1 {
+                font-size: 2.2em; 
+            }
+            header p {
+                font-size: 1em; 
+            }
+            nav {
+                border-top-left-radius: 0; 
+                border-top-right-radius: 0; 
+                margin-top: 0; 
+                padding-top: 18px; 
+            }
+            nav a {
+                padding: 14px 18px; 
+                font-size: 0.9em;
+                transform: none !important; 
+                box-shadow: none !important; 
+                margin: 5px; 
+            }
+            .container {
+                padding: 25px; 
+                margin: 35px auto; 
+                transform: none !important; 
+                box-shadow: none !important; 
+                border-radius: 8px; 
+            }
+            .container h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            .message-box {
+                padding: 18px 30px; 
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>proyecto J.M.R.</h1>
+        <p>¡para el futuro!</p>
+    </header>
+
+    <nav>
+        <a href="./index.html">Inicio</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./pendientes.html">Pendientes</a>
+        <a href="./Quienes somos.html">Quienes somos</a>
+    </nav>
+
+    <div class="container" id="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <p>Somos un equipo de estudiantes que hicimos el proyecto para una página web que nos ayude a la organización de actividades y cursos.</p>
+        <p>Gracias al curso "Desarrollo de software con inteligencia artificial" y al rector Dr. Carlos Berbeci, tuvimos un poco de conocimiento sobre lenguaje natural y obtuvimos una base para crear este gran proyecto.</p>
+        <p><b>Integrantes:</b></p>
+        <ul>
+            <li>ING en formación Ruben LAYA CI: 31178863</li>
+            <li>ING en formación Jesus Rondon CI: 31460651</li>
+            <li>ING en formación Italo De musso CI: 32220848</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 mi proyecto para Desarrollo de software con inteligencia artificial UNETI. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Mensaje personalizado (sustituto de alert) -->
+    <div id="customMessageBox" class="message-box"></div>
+
+    <script>
+        // Función para mostrar un mensaje personalizado
+        function showMessage(message, type = 'success') {
+            const messageBox = document.getElementById('customMessageBox');
+            messageBox.textContent = message;
+            messageBox.className = 'message-box ' + type; // Añade la clase 'success' o 'error'
+            messageBox.style.display = 'block';
+
+            // Oculta el mensaje después de 3 segundos
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>

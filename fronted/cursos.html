@@ -3,141 +3,523 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Cursos - J.M.R.</title>
+    <title>Cursos - J.M.R.</title>
     <style>
         /* Estilos CSS básicos */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            /* Estilos para el fondo copiados de index.html */
+            background-image: url(https://i.pinimg.com/736x/b3/fb/24/b3fb24b01bb8369921da7516d9a11774.jpg); /* Tu imagen de fondo de Pinterest */
+            background-size: cover; /* Cubre todo el área sin repetir */
+            background-attachment: fixed; /* Hace que el fondo se quede fijo al hacer scroll */
+            background-position: center center; /* Centra la imagen de fondo */
+            background-color: #f4f4f4; /* Color de respaldo si la imagen no carga */
+            color: #303030; /* Color de texto ajustado para mejor contraste con fondo claro */
+            line-height: 1.6; /* Mejora la legibilidad del texto */
+            overflow-x: hidden; /* Evita el scroll horizontal causado por animaciones o elementos que sobresalen */
         }
         header {
-            background-color: #4c59af;
+            /* Estilos del encabezado copiados de index.html */
+            background: linear-gradient(to right, #6a79e4, #87CEFA, #DA70D6); /* Degradado de colores vibrantes */
             color: white;
-            padding: 1em 0;
+            padding: 2.5em 0 4em; /* Más padding inferior para las capas de ondas */
             text-align: center;
+            position: relative; /* Necesario para posicionar elementos */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave y compleja */
+            overflow: hidden; /* Asegura que las ondas no desborden */
+            
+            /* Bordes inferiores redondeados, combinando con las ondas */
+            border-bottom-left-radius: 100px; 
+            border-bottom-right-radius: 100px;
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
         }
+        header:hover {
+            transform: translateY(-5px); /* Más levantamiento al pasar el mouse */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35); /* Sombra más fuerte al flotar */
+        }
+        header h1 {
+            margin-bottom: 0.2em;
+            font-size: 3em; /* Título aún más grande */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Sombra de texto más pronunciada */
+            animation: slideInFromTop 1s ease-out forwards; /* Nueva animación de entrada */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+        header p {
+            margin-top: 0;
+            font-size: 1.3em; /* Párrafo más grande */
+            animation: fadeIn 1.5s ease-out 0.5s forwards; /* Animación de entrada con retardo */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+
+        /* Ondas del encabezado copiadas de index.html */
+        header::before,
+        header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Altura de las ondas */
+            background: rgba(255, 255, 255, 0.15); /* Color base de las ondas, translúcido */
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Forma de onda curvada en la parte superior */
+            transform-origin: bottom center;
+            z-index: 1; /* Para que estén por debajo del texto, pero sobre el fondo */
+        }
+
+        header::before {
+            bottom: -30px; /* Posición de la primera onda */
+            background: rgba(255, 255, 255, 0.1); /* Ligeramente más transparente */
+            transform: skewY(-4deg) scaleX(1.5); /* Más inclinado y ancho */
+            animation: waveEffect 5s infinite alternate ease-in-out; /* Animación de la primera onda */
+        }
+
+        header::after {
+            bottom: -50px; /* Posición de la segunda onda, más abajo */
+            background: rgba(255, 255, 255, 0.2); /* Menos transparente que la primera */
+            transform: skewY(2deg) scaleX(1.2); /* Inclinación opuesta y menos ancho */
+            animation: waveEffectReverse 6s infinite alternate ease-in-out 0.5s; /* Animación de la segunda onda con retardo */
+        }
+
         nav {
-            background-color: #333;
+            /* ESTILOS MODIFICADOS: Fondo transparente y sin sombra directa, bordes rectos */
+            background: transparent; /* Fondo transparente */
+            box-shadow: none; /* Elimina la sombra de la barra de navegación */
             overflow: hidden;
+            position: sticky; /* Sticky navigation */
+            top: 0;
+            z-index: 100; /* Asegura que esté por encima de otros elementos */
+            animation: fadeIn 1s ease-out 1s forwards; /* Animación de entrada con retardo */
+            opacity: 0;
+            
+            /* Bordes superiores rectos */
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
+            /* Ajuste de margen y padding para barra recta debajo del encabezado curvado */
+            margin-top: 0; 
+            padding-top: 18px; /* Restaurar padding estándar */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave y compleja */
+
+            /* Centrar los elementos de navegación con flexbox */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
         }
+        /* Eliminado: nav:hover (ya no queremos que el contenedor transparente se eleve o tenga sombra al pasar el ratón) */
+        
         nav a {
-            float: left;
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 20px;
+            padding: 18px 25px; /* Más padding para los enlaces */
             text-decoration: none;
+            /* AÑADIDO: Sombra de texto para mejorar la legibilidad sobre el fondo transparente */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6); 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-bottom 0.3s ease; /* Más transiciones */
+            font-weight: bold; /* Texto de navegación más grueso */
+            position: relative; /* Para el pseudo-elemento de la línea */
+            overflow: hidden; /* Para que la línea se deslice */
+            /* AÑADIDO: Sombra sutil para los elementos individuales de la nav, para darles algo de 'pop' */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            border-radius: 8px; /* Ligeramente redondeado */
+            margin: 5px 10px; /* Añadido margen entre los elementos para mejor espaciado */
         }
         nav a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: rgba(0, 140, 186, 0.7); /* Color secundario con transparencia al pasar el mouse */
+            transform: translateY(-3px) scale(1.05); /* Mayor levantamiento y ligero escalado */
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra más fuerte al pasar el mouse */
         }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
+        nav a::after { /* Efecto de línea inferior */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
         }
+        nav a:hover::after {
+            transform: translateX(0);
+        }
+
+        .container {
+            /* Estilos de contenedor copiados de index.html */
+            padding: 35px; 
+            max-width: 950px; 
+            margin: 50px auto; 
+            background-color: white;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); 
+            border-radius: 15px; 
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            border: 1px solid #d0d0d0; 
+            animation: popIn 0.8s ease-out forwards; 
+            opacity: 0; 
+            position: relative; 
+        }
+        .container:hover {
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35); 
+        }
+        /* Retraso para la animación de los contenedores (ajustado para dos contenedores) */
+        #cursos.container { animation-delay: 0.2s; } 
+        #manage-courses.container { animation-delay: 0.4s; }
+
+        /* Estilos específicos para la sección de administración de cursos - ACTUALIZADOS */
+        #manage-courses {
+            padding: 35px; /* Consistente con .container */
+            background-color: white; /* Consistente con .container */
+            border: 1px solid #d0d0d0; /* Consistente con .container */
+            border-radius: 15px; /* Consistente con .container */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+        #manage-courses h2 {
+            color: #4c59af; /* Color principal */
+            margin-bottom: 25px; /* Más espacio */
+            font-size: 2.2em; /* Título más grande */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: slideInFromLeft 0.8s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.5s; /* Ajuste para el h2 interno */
+        }
+        #manage-courses > div { /* Selector más específico para el contenedor de input/button */
+            display: flex;
+            gap: 15px; /* Más espacio */
+            margin-bottom: 25px; /* Más espacio */
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.8s forwards; /* Animación de entrada */
+            opacity: 0;
+        }
+        #courseInput {
+            padding: 12px; /* Más padding */
+            border: 2px solid #ced4da; /* Borde más visible */
+            border-radius: 8px; /* Más redondeado */
+            flex-grow: 1; 
+            font-size: 1.1em; /* Fuente más grande */
+            box-sizing: border-box; /* Para que el padding no aumente el ancho */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #courseInput:focus {
+            border-color: #007bff; /* Borde azul al enfocar */
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque */
+            outline: none;
+        }
+        #managedCourseList {
+            list-style: none; 
+            padding: 0;
+        }
+        .course-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0; /* Más padding */
+            border-bottom: 1px solid #eee;
+            font-size: 1.1em; /* Fuente más grande */
+            transition: background-color 0.3s ease;
+        }
+        .course-item:last-child {
+            border-bottom: none;
+        }
+        .course-item:hover {
+            background-color: #f8f8f8; /* Sutil cambio de fondo al pasar el ratón */
+        }
+        .course-item .remove-button {
+            /* Estilos del botón de eliminar adaptados */
+            background-color: #f44336; /* Red */
+            color: white;
+            border: none;
+            padding: 8px 15px; /* Ajustado padding */
+            border-radius: 6px; /* Más redondeado */
+            cursor: pointer;
+            font-size: 0.9em; /* Ajustado tamaño de fuente */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(244, 67, 54, 0.3); /* Sombra sutil */
+        }
+        .course-item .remove-button:hover {
+            background-color: #da190b;
+            transform: translateY(-1px); /* Ligeramente hacia arriba */
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.4); /* Sombra más fuerte */
+        }
+        .course-item .remove-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(244, 67, 54, 0.2);
+        }
+        /* Estilo para el botón de añadir curso en la sección de administración - ADAPTADO */
+        #manage-courses .button {
+            background-color: #5cb85c; /* Green */
+            border-color: #4cae4c;
+            padding: 12px 28px; /* Ajustado para que sea consistente */
+            font-size: 1em; /* Ajustado para el contexto */
+            box-shadow: 0 4px 10px rgba(92, 184, 92, 0.4);
+        }
+        #manage-courses .button:hover {
+            background-color: #449d44;
+            border-color: #398439;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(92, 184, 92, 0.5);
+        }
+        #manage-courses .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(92, 184, 92, 0.3);
+        }
+
         footer {
+            /* Estilos del footer copiados de index.html */
             text-align: center;
-            padding: 1em 0;
+            padding: 2em 0; 
             background-color: #333;
             color: white;
             position: relative;
             bottom: 0;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 60px; 
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3); 
         }
         .button {
-            background-color: #008CBA; /* Blue */
+            /* Estilos generales de los botones copiados de index.html */
+            background-color: #008CBA; 
             border: none;
             color: white;
-            padding: 15px 32px;
+            padding: 15px 35px; 
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            font-size: 1.2em; 
+            font-weight: bold; 
+            margin: 15px 8px; 
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px; 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, letter-spacing 0.2s ease;
+            box-shadow: 0 6px 15px rgba(0, 140, 186, 0.4); 
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1;
+        }
+        .button::before { 
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: width 0.4s ease, height 0.4s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        .button:hover::before {
+            width: 200%;
+            height: 200%;
         }
         .button:hover {
             background-color: #005f7a;
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(0, 140, 186, 0.5); 
+            letter-spacing: 1px; 
+        }
+        .button:active {
+            transform: translateY(0); 
+            box-shadow: 0 3px 8px rgba(0, 140, 186, 0.3); 
+        }
+
+        /* Keyframe Animations copiadas de index.html */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes waveEffect {
+            0% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+            50% { transform: skewY(0deg) scaleX(1.6) translateY(-5px); }
+            100% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+        }
+        @keyframes waveEffectReverse {
+            0% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+            50% { transform: skewY(-2deg) scaleX(1.3) translateY(5px); }
+            100% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+        }
+        @keyframes expandWidth {
+            from { width: 0; opacity: 0; }
+            to { width: 80%; opacity: 1; }
+        }
+
+
+        /* Media query para hacer la página responsive - ADAPTADO */
+        @media (max-width: 768px) {
+            header {
+                padding: 2em 0 4em; 
+                border-bottom-left-radius: 50px; 
+                border-bottom-right-radius: 50px; 
+            }
+            header h1 {
+                font-size: 2.2em; 
+            }
+            header p {
+                font-size: 1em; 
+            }
+            nav {
+                border-top-left-radius: 0; 
+                border-top-right-radius: 0; 
+                margin-top: 0; 
+                padding-top: 18px; 
+            }
+            nav a {
+                padding: 14px 18px; 
+                font-size: 0.9em;
+                transform: none !important; 
+                box-shadow: none !important; 
+                margin: 5px; /* Ajuste de margen en móvil */
+            }
+            .container {
+                padding: 25px; 
+                margin: 35px auto; 
+                transform: none !important; 
+                box-shadow: none !important; 
+                border-radius: 8px; 
+            }
+            #manage-courses {
+                padding: 25px; /* Ajustado para móvil */
+            }
+            #manage-courses h2 {
+                font-size: 1.8em; /* Ajustado para móvil */
+            }
+            #manage-courses > div {
+                gap: 10px; /* Ajustado para móvil */
+                margin-bottom: 15px; /* Ajustado para móvil */
+            }
+            #courseInput {
+                padding: 10px; /* Ajustado para móvil */
+                font-size: 1em; /* Ajustado para móvil */
+            }
+            .course-item {
+                padding: 10px 0; /* Ajustado para móvil */
+                font-size: 1em; /* Ajustado para móvil */
+            }
+            .course-item .remove-button {
+                padding: 5px 10px; /* Ajustado para móvil */
+                font-size: 0.8em; /* Ajustado para móvil */
+            }
+            .button {
+                padding: 12px 25px; 
+                font-size: 1em;
+                margin: 10px 5px;
+                transform: none !important; 
+                box-shadow: none !important; 
+                letter-spacing: 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Bienvenido a Mi Página J.M.R.</h1>
-        <p>Tu destino para cosas increíbles</p>
+        <h1>Cursos J.M.R.</h1>
+        <p>¡Aquí aprenderás muchas cosas!</p>
     </header>
 
     <nav>
-        <a href="#inicio">Inicio</a>
-<a href="./cursos.html">Cursos</a>
-        <a href="#pendientes">pendientes</a>
-        <a href="#acerca">Acerca de</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="./index.html">Inicio</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./pendientes.html">Pendientes</a>
+        <a href="./Quienes somos.html">Quienes somos</a>
     </nav>
-
-    <body>
-    <header>
-        <h1>Bienvenido a Mi Página J.M.R.</h1>
-        <p>Tu destino para cosas increíbles</p>
-    </header>
-
-    <nav>
-        </nav>
 
     <div class="container" id="cursos">
         <h2>Nuestros Cursos</h2>
         <p>Aquí encontrarás toda la información sobre los cursos que ofrecemos. Desde desarrollo web hasta diseño gráfico, tenemos algo para ti.</p>
-        <ul>
-            <li>Curso de HTML y CSS para principiantes</li>
-            <li>Curso de JavaScript avanzado</li>
-            <li>Curso de Diseño de Interfaces (UI/UX)</li>
+        <ul id="courseList">
+            <li>Ciencia, Tecnología y Sociedad</li>
+            <li>Fundamentos matemáticos</li>
+            <li>Introducción a la Informática</li>
+            <li>Técnicas de Estudios y Documentación Autogestionado</li>
         </ul>
     </div>
 
-    </footer>
-
-    </body>
-
-    <div class="container" id="contacto">
-        <h2>Contacto</h2>
-        <p>¿Tienes alguna pregunta? ¡No dudes en contactarnos!</p>
-        <form action="#" method="POST">
-            <p>
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
-            </p>
-            <p>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
-            </p>
-            <p>
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje" rows="5" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
-            </p>
-            <button type="submit" class="button">Enviar Mensaje</button>
-        </form>
+    <div class="container" id="manage-courses">
+        <h2>Administrar Cursos</h2>
+        <div>
+            <input type="text" id="courseInput" placeholder="Nombre del curso">
+            <button class="button" onclick="addCourse()">Añadir Curso</button>
+        </div>
+        <ul id="managedCourseList">
+            </ul>
     </div>
 
     <footer>
-        <p>&copy; 2025 Mi Página Fantástica. Todos los derechos reservados.</p>
+        <p>&copy; 2025 mi proyecto de Desarrollo de software con inteligencia artificial UNETI. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Script JavaScript simple
-        function showMessage() {
-            alert('¡Hola! Has hecho clic en el botón. ¡Bien hecho!');
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialCoursesElements = document.querySelectorAll('#courseList li');
+            const managedCourseList = document.getElementById('managedCourseList');
+
+            // Cargar los cursos iniciales en la sección de administración
+            initialCoursesElements.forEach(courseLi => {
+                const courseName = courseLi.textContent.trim(); // Eliminar espacios en blanco
+                createCourseListItem(courseName);
+            });
+
+            // Opcional: Vaciar la lista original si solo quieres gestionarlos en la nueva sección
+            // Si quieres que los cursos se muestren en ambas secciones, comenta la siguiente línea.
+            // document.getElementById('courseList').innerHTML = '';
+        });
+
+        function createCourseListItem(courseName) {
+            const managedCourseList = document.getElementById('managedCourseList');
+            const listItem = document.createElement('li');
+            listItem.classList.add('course-item');
+            listItem.innerHTML = `
+                <span>${courseName}</span>
+                <button class="remove-button">Eliminar</button>
+            `;
+            listItem.querySelector('.remove-button').onclick = function() {
+                removeCourse(this);
+            };
+            managedCourseList.appendChild(listItem);
+        }
+
+        function addCourse() {
+            const courseInput = document.getElementById('courseInput');
+            const courseName = courseInput.value.trim();
+
+            if (courseName) {
+                createCourseListItem(courseName);
+                courseInput.value = ''; // Limpiar el campo de entrada
+            } else {
+                // He reemplazado alert() con console.log() para evitar problemas en el entorno de vista previa
+                console.log('Por favor, introduce el nombre del curso.');
+            }
+        }
+
+        function removeCourse(button) {
+            const listItem = button.parentNode;
+            listItem.remove();
         }
     </script>
 

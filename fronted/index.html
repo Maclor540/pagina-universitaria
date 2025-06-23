@@ -10,64 +10,417 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            /* Estilos para el fondo */
+            background-image: url(https://i.pinimg.com/736x/b3/fb/24/b3fb24b01bb8369921da7516d9a11774.jpg); /* Tu imagen de fondo de Pinterest */
+            background-size: cover; /* Cubre todo el área sin repetir */
+            background-attachment: fixed; /* Hace que el fondo se quede fijo al hacer scroll */
+            background-position: center center; /* Centra la imagen de fondo */
+            background-color: #f4f4f4; /* Color de respaldo si la imagen no carga */
+            color: #303030; /* Color de texto ajustado para mejor contraste con fondo claro */
+            line-height: 1.6; /* Mejora la legibilidad del texto */
+            overflow-x: hidden; /* Evita el scroll horizontal causado por animaciones o elementos que sobresalen */
         }
         header {
-            background-color: #4c59af;
+            /* Nuevo degradado para el fondo del encabezado, inspirado en las referencias */
+            background: linear-gradient(to right, #6a79e4, #87CEFA, #DA70D6); /* Azul-violeta, Azul Cielo, Orquídea */
             color: white;
-            padding: 1em 0;
+            padding: 2.5em 0 4em; /* Más padding inferior para las capas de ondas */
             text-align: center;
+            position: relative; /* Necesario para posicionar el botón y las ondas */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); /* Sombra más pronunciada */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave y compleja */
+            overflow: hidden; /* Asegura que las ondas no desborden */
+            
+            /* Bordes inferiores redondeados, combinando con las ondas */
+            border-bottom-left-radius: 100px; 
+            border-bottom-right-radius: 100px;
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
         }
+        header:hover {
+            transform: translateY(-5px); /* Más levantamiento al pasar el mouse */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35); /* Sombra más fuerte al flotar */
+        }
+        header h1 {
+            margin-bottom: 0.2em;
+            font-size: 3em; /* Título aún más grande */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Sombra de texto más pronunciada */
+            animation: slideInFromTop 1s ease-out forwards; /* Nueva animación de entrada */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+        header p {
+            margin-top: 0;
+            font-size: 1.3em; /* Párrafo más grande */
+            animation: fadeIn 1.5s ease-out 0.5s forwards; /* Animación de entrada con retardo */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para asegurar que el texto esté sobre las ondas */
+            z-index: 10; /* Asegura que el texto esté por encima de las ondas */
+        }
+
+        /* Ondas del encabezado */
+        header::before,
+        header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Altura de las ondas */
+            background: rgba(255, 255, 255, 0.15); /* Color base de las ondas, translúcido */
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Forma de onda curvada en la parte superior */
+            transform-origin: bottom center;
+            z-index: 1; /* Para que estén por debajo del texto, pero sobre el fondo */
+        }
+
+        header::before {
+            bottom: -30px; /* Posición de la primera onda */
+            background: rgba(255, 255, 255, 0.1); /* Ligeramente más transparente */
+            transform: skewY(-4deg) scaleX(1.5); /* Más inclinado y ancho */
+            animation: waveEffect 5s infinite alternate ease-in-out; /* Animación de la primera onda */
+        }
+
+        header::after {
+            bottom: -50px; /* Posición de la segunda onda, más abajo */
+            background: rgba(255, 255, 255, 0.2); /* Menos transparente que la primera */
+            transform: skewY(2deg) scaleX(1.2); /* Inclinación opuesta y menos ancho */
+            animation: waveEffectReverse 6s infinite alternate ease-in-out 0.5s; /* Animación de la segunda onda con retardo */
+        }
+
         nav {
-            background-color: #333;
+            /* ESTILOS MODIFICADOS: Fondo transparente y sin sombra directa, bordes rectos */
+            background: transparent; /* Fondo transparente */
+            box-shadow: none; /* Elimina la sombra de la barra de navegación */
             overflow: hidden;
+            position: sticky; /* Sticky navigation */
+            top: 0;
+            z-index: 100; /* Asegura que esté por encima de otros elementos */
+            animation: fadeIn 1s ease-out 1s forwards; /* Animación de entrada con retardo */
+            opacity: 0;
+            
+            /* Bordes superiores rectos */
+            border-top-left-radius: 0; 
+            border-top-right-radius: 0; 
+            /* Ajuste de margen y padding para barra recta debajo del encabezado curvado */
+            margin-top: 0; 
+            padding-top: 18px; /* Restaurar padding estándar */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave y compleja */
+
+            /* Centrar los elementos de navegación con flexbox */
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
         }
+        /* Eliminado: nav:hover (ya no queremos que el contenedor transparente se eleve o tenga sombra al pasar el ratón) */
+        
         nav a {
-            float: left;
+            /* Eliminado: float: left; para permitir que flexbox centre los elementos */
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 20px;
+            padding: 18px 25px; /* Más padding para los enlaces */
             text-decoration: none;
+            /* AÑADIDO: Sombra de texto para mejorar la legibilidad sobre el fondo transparente */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6); 
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-bottom 0.3s ease; /* Más transiciones */
+            font-weight: bold; /* Texto de navegación más grueso */
+            position: relative; /* Para el pseudo-elemento de la línea */
+            overflow: hidden; /* Para que la línea se deslice */
+            /* AÑADIDO: Sombra sutil para los elementos individuales de la nav, para darles algo de 'pop' */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            border-radius: 8px; /* Ligeramente redondeado */
+            margin: 5px 10px; /* Añadido margen entre los elementos para mejor espaciado */
         }
         nav a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: rgba(0, 140, 186, 0.7); /* Color secundario con transparencia al pasar el mouse */
+            transform: translateY(-3px) scale(1.05); /* Mayor levantamiento y ligero escalado */
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra más fuerte al pasar el mouse */
         }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
+        nav a::after { /* Efecto de línea inferior */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
         }
+        nav a:hover::after {
+            transform: translateX(0);
+        }
+
+        .container {
+            padding: 35px; /* Más padding */
+            max-width: 950px; /* Ancho máximo un poco más grande */
+            margin: 50px auto; /* Más margen para separación */
+            background-color: white;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+            border-radius: 15px; /* Bordes más redondeados por defecto */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave */
+            border: 1px solid #d0d0d0; /* Borde sutil */
+            animation: popIn 0.8s ease-out forwards; /* Nueva animación de entrada */
+            opacity: 0; /* Oculto inicialmente para la animación */
+            position: relative; /* Para elementos internos animados */
+        }
+        .container:hover {
+            transform: translateY(-8px) scale(1.01); /* Efecto flotante más pronunciado y ligero escalado */
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35); /* Sombra aún más fuerte al flotar */
+        }
+        /* Retraso para la animación de los contenedores */
+        .container:nth-child(3) { animation-delay: 0.2s; } /* Inicio */
+        .container:nth-child(4) { animation-delay: 0.4s; } /* Acerca de Nosotros */
+        .container:nth-child(5) { animation-delay: 0.6s; } /* Nuestros cursos */
+        .container:nth-child(6) { animation-delay: 0.8s; } /* Contacto */
+
+        /* === Estilos específicos para la sección "Inicio" === */
+        #inicio {
+            /* Vuelve a los bordes redondeados estándar del contenedor */
+            border-top-left-radius: 15px; 
+            border-top-right-radius: 15px; 
+            margin-top: 50px; /* Margen estándar */
+            padding-top: 35px; /* Padding estándar */
+        }
+
+        #inicio h2 {
+            font-size: 2.5em; /* Título de inicio más grande */
+            color: #4c59af; /* Color principal */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: slideInFromLeft 0.8s ease-out forwards; /* Animación de entrada desde la izquierda */
+            opacity: 0;
+            margin-bottom: 20px;
+        }
+        #inicio p {
+            font-size: 1.15em; /* Párrafo más grande */
+            color: #555;
+            animation: fadeIn 1s ease-out 0.2s forwards; /* Animación de entrada con retardo */
+            opacity: 0;
+            margin-bottom: 30px;
+        }
+        #inicio .decorative-line {
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, #008CBA, #4c59af);
+            margin: 20px auto;
+            border-radius: 5px;
+            animation: expandWidth 1.5s ease-out forwards; /* Animación de expansión */
+            opacity: 0;
+        }
+        /* ==================================================== */
+
         footer {
             text-align: center;
-            padding: 1em 0;
+            padding: 2em 0; /* Más padding */
             background-color: #333;
             color: white;
             position: relative;
             bottom: 0;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 60px; /* Más margen superior */
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3); /* Sombra superior más pronunciada */
         }
         .button {
-            background-color: #008CBA; /* Blue */
+            background-color: #008CBA; /* Azul */
             border: none;
             color: white;
-            padding: 15px 32px;
+            padding: 15px 35px; /* Padding ajustado */
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+            font-size: 1.2em; /* Fuente más grande */
+            font-weight: bold; /* Más énfasis */
+            margin: 15px 8px; /* Margen ajustado */
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px; /* Bordes más redondeados */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, letter-spacing 0.2s ease;
+            box-shadow: 0 6px 15px rgba(0, 140, 186, 0.4); /* Sombra para el botón */
+            position: relative; /* Para efectos adicionales */
+            overflow: hidden; /* Para el efecto de onda */
+            z-index: 1;
+        }
+        .button::before { /* Efecto de onda o brillo */
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: width 0.4s ease, height 0.4s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+        .button:hover::before {
+            width: 200%;
+            height: 200%;
         }
         .button:hover {
             background-color: #005f7a;
+            transform: translateY(-3px); /* Ligeramente hacia arriba */
+            box-shadow: 0 8px 20px rgba(0, 140, 186, 0.5); /* Sombra más grande al pasar el mouse */
+            letter-spacing: 1px; /* Efecto de espaciado de letras */
+        }
+        .button:active {
+            transform: translateY(0); /* Vuelve a la posición original al hacer clic */
+            box-shadow: 0 3px 8px rgba(0, 140, 186, 0.3); /* Sombra más pequeña al hacer clic */
+        }
+
+        /* Estilos para el botón de login en el encabezado */
+        .login-button {
+            position: absolute; /* Posicionamiento absoluto dentro del header */
+            top: 30px; /* Distancia desde arriba ajustada */
+            right: 35px; /* Distancia desde la derecha ajustada */
+            background-color: #f8f9fa; /* Fondo blanco/claro */
+            color: #4c59af; /* Color de texto del botón (primario de tu paleta) */
+            padding: 14px 25px; /* Más padding */
+            border: 2px solid #4c59af; /* Borde del color primario */
+            border-radius: 30px; /* Bordes más redondeados (estilo píldora) */
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, letter-spacing 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* Sombra sutil */
+            letter-spacing: 0.7px; /* Espaciado entre letras */
+            white-space: nowrap; /* Evita que el texto se rompa */
+        }
+        .login-button:hover {
+            background-color: #4c59af; /* Cambia al color primario al pasar el ratón */
+            color: white; /* Texto blanco al pasar el ratón */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+            transform: translateY(-5px) scale(1.05); /* Más levantamiento y escalado */
+            letter-spacing: 1.2px; /* Mayor espaciado entre letras */
+        }
+        .login-button:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Estilos para el mensaje personalizado */
+        .message-box {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50; /* Color de éxito */
+            color: white;
+            padding: 20px 35px; /* Más padding */
+            border-radius: 10px; /* Bordes más redondeados */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Sombra más pronunciada */
+            z-index: 1000;
+            text-align: center;
+            font-size: 1.3em; /* Texto más grande */
+            animation: fadeInScale 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; /* Animación de entrada más suave */
+            opacity: 0; /* Oculto inicialmente */
+        }
+        .message-box.error {
+            background-color: #f44336; /* Color de error */
+        }
+        
+        /* Keyframe Animations */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInFromLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes waveEffect {
+            0% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+            50% { transform: skewY(0deg) scaleX(1.6) translateY(-5px); }
+            100% { transform: skewY(-4deg) scaleX(1.5) translateY(0); }
+        }
+        @keyframes waveEffectReverse {
+            0% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+            50% { transform: skewY(-2deg) scaleX(1.3) translateY(5px); }
+            100% { transform: skewY(2deg) scaleX(1.2) translateY(0); }
+        }
+        @keyframes expandWidth {
+            from { width: 0; opacity: 0; }
+            to { width: 80%; opacity: 1; }
+        }
+
+
+        /* Media query para hacer la página responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 2em 0 4em; /* Ajuste para el padding en móvil */
+                border-bottom-left-radius: 50px; /* Bordes menos redondeados en móvil */
+                border-bottom-right-radius: 50px; /* Bordes menos redondeados en móvil */
+            }
+            header h1 {
+                font-size: 2.2em; /* Título más pequeño en móvil */
+            }
+            header p {
+                font-size: 1em; /* Párrafo más pequeño en móvil */
+            }
+            .login-button {
+                position: static; /* Vuelve a su posición normal en flujos de documento */
+                display: block; /* Ocupa todo el ancho */
+                width: calc(100% - 60px); /* Ajusta el ancho con padding y margen */
+                margin: 15px auto; /* Centra y da margen */
+                text-align: center;
+                border-radius: 8px; /* Bordes menos redondeados en móvil */
+                padding: 10px 15px; /* Menos padding */
+                font-size: 1em;
+                letter-spacing: 0;
+                transform: none !important; /* Desactiva transform en móviles */
+                box-shadow: none !important; /* Desactiva sombra en móviles */
+            }
+            nav {
+                border-top-left-radius: 0; 
+                border-top-right-radius: 0; 
+                margin-top: 0; 
+                padding-top: 18px; 
+            }
+            nav a {
+                padding: 14px 18px; 
+                font-size: 0.9em;
+                transform: none !important; 
+                box-shadow: none !important; 
+                margin: 5px; /* Ajuste de margen en móvil */
+            }
+            .container {
+                padding: 25px; 
+                margin: 35px auto; 
+                transform: none !important; 
+                box-shadow: none !important; 
+                border-radius: 8px; 
+            }
+            #inicio {
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                margin-top: 35px; /* Ajuste para móviles, usar margin estándar de .container */
+                padding-top: 25px; /* Ajuste para móviles, usar padding estándar de .container */
+            }
+            .button {
+                padding: 12px 25px; 
+                font-size: 1em;
+                margin: 10px 5px;
+                transform: none !important; 
+                box-shadow: none !important; 
+                letter-spacing: 0;
+            }
+            .message-box {
+                padding: 18px 30px; 
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
@@ -75,70 +428,87 @@
 
     <header>
         <h1>Bienvenido a Mi Página J.M.R.</h1>
-        <p>Tu destino para cosas increíbles</p>
+        <p>¡Tu destino para cosas increíbles!</p>
+        
+        <!-- El botón "Iniciar Sesión" ahora enlaza a la nueva página registro.html -->
+        <a href="./registro.html" class="login-button">Iniciar Sesión</a> 
     </header>
 
     <nav>
-        <a href="#inicio">Inicio</a>
-    <a href="./cursos.html">Cursos</a>
-        <a href="#pendientes">pendientes</a>
-        <a href="#acerca">Acerca de</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="./index.html">Inicio</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./pendientes.html">Pendientes</a>
+        <a href="./Quienes somos.html">Quienes somos</a>
     </nav>
 
     <div class="container" id="inicio">
         <h2>Sección de Inicio</h2>
         <p>Esta es la sección de inicio de tu página. Puedes poner aquí una introducción, noticias recientes o lo que sea más relevante para tus visitantes.</p>
-        <button class="button" onclick="showMessage()">¡Haz Clic Aquí!</button>
+        <!-- Elemento decorativo para la sección de inicio -->
+        <div class="decorative-line"></div>
+        <button class="button" onclick="showMessage('¡Hola! Has hecho clic en el botón. ¡Bien hecho!')">¡Haz Clic Aquí!</button>
     </div>
 
     <div class="container" id="acerca">
         <h2>Acerca de Nosotros</h2>
         <p>Aquí puedes contar la historia de tu empresa, tu misión, tus valores y todo lo que quieras que la gente sepa sobre ti.</p>
-        <p>Somos un equipo apasionado dedicado a ofrecer las mejores soluciones.</p>
     </div>
 
     <div class="container" id="servicios">
-        <h2>Nuestros Servicios</h2>
+        <h2>Nuestros cursos</h2>
         <ul>
-            <li>Desarrollo Web</li>
-            <li>Diseño Gráfico</li>
-            <li>Consultoría SEO</li>
-            <li>Marketing Digital</li>
+            <li>Ciencia, Tecnología y Sociedad</li>
+            <li>Fundamentos matemáticos</li>
+            <li>Introducción a la Informática</li>
+            <li>Técnicas de Estudios y Documentación Autogestionado</li>
         </ul>
         <p>Explora la gama completa de nuestros servicios y cómo podemos ayudarte.</p>
     </div>
+
+    <!-- La sección de registro ha sido eliminada de aquí, ahora está en registro.html -->
 
     <div class="container" id="contacto">
         <h2>Contacto</h2>
         <p>¿Tienes alguna pregunta? ¡No dudes en contactarnos!</p>
         <form action="#" method="POST">
             <p>
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <label for="contact-nombre">Nombre:</label><br>
+                <input type="text" id="contact-nombre" name="nombre" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
             </p>
             <p>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                <label for="contact-email">Email:</label><br>
+                <input type="email" id="contact-email" name="email" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;">
             </p>
             <p>
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje" rows="5" required style="width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                <label for="contact-mensaje">Mensaje:</label><br>
+                <textarea id="contact-mensaje" name="mensaje" rows="6" required style="width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;"></textarea>
             </p>
             <button type="submit" class="button">Enviar Mensaje</button>
         </form>
     </div>
 
     <footer>
-        <p>&copy; 2025 Mi Página Fantástica. Todos los derechos reservados.</p>
+        <p>&copy; 2025 mi proyecto para Desarrollo de software con inteligencia artificial UNETI. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Mensaje personalizado (sustituto de alert) -->
+    <div id="customMessageBox" class="message-box"></div>
+
     <script>
-        // Script JavaScript simple
-        function showMessage() {
-            alert('¡Hola! Has hecho clic en el botón. ¡Bien hecho!');
+        // Función para mostrar un mensaje personalizado
+        function showMessage(message, type = 'success') {
+            const messageBox = document.getElementById('customMessageBox');
+            messageBox.textContent = message;
+            messageBox.className = 'message-box ' + type; // Añade la clase 'success' o 'error'
+            messageBox.style.display = 'block';
+
+            // Oculta el mensaje después de 3 segundos
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
         }
+
+        // La función handleRegistration ha sido eliminada, ya que el formulario de registro se movió a su propia página.
     </script>
 
 </body>
